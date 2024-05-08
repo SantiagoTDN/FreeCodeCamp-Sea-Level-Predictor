@@ -8,6 +8,8 @@ def draw_plot():
 
     # Create scatter plot
     df.plot(x="Year",y="CSIRO Adjusted Sea Level",kind="scatter")
+    pd.set_option("display.precision", 7)
+
 
 
     # Create first line of best fit
