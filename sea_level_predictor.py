@@ -8,11 +8,11 @@ def draw_plot():
 
     # Create scatter plot
     df.plot(x="Year",y="CSIRO Adjusted Sea Level",kind="scatter")
-    pd.set_option("display.precision", 7)
 
 
 
     # Create first line of best fit
+    pd.set_option("display.precision", 7)
     lin1=linregress(x=df["Year"],y=df["CSIRO Adjusted Sea Level"])
     bfl1=lin1.slope*df["Year"]+lin1.intercept
     lin1.slope*2050+lin1.intercept
