@@ -4,7 +4,7 @@ from scipy.stats import linregress
 
 def draw_plot():
     # Read data from file
-    df=pd.read_csv("C:/Users/pc/Free Code Camp Folder/Data Analysis with Python Folder/Project practice/epa-sea-level.csv")
+    df=pd.read_csv("/workspace/boilerplate-sea-level-predictor/epa-sea-level.csv")
 
     # Create scatter plot
     df.plot(x="Year",y="CSIRO Adjusted Sea Level",kind="scatter")
