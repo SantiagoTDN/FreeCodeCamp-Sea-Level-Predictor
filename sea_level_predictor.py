@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.stats import linregress
-
+pd.set_option("display.precision", 7)
 def draw_plot():
     # Read data from file
     df=pd.read_csv("/workspace/boilerplate-sea-level-predictor/epa-sea-level.csv")
