@@ -13,27 +13,21 @@ def draw_plot():
 
     # Create first line of best fit
     pd.set_option("display.precision", 7)
+    p=pd.DataFrame(pd.Series(range(2014,2051)),columns=["Year"])
+    df_p=pd.concat([df,p],ignore_index=True)
     lin1=linregress(x=df["Year"],y=df["CSIRO Adjusted Sea Level"])
-    bfl1=lin1.slope*df["Year"]+lin1.intercept
-    lin1.slope*2050+lin1.intercept
-    df2050=df.copy()
-    df2050.loc[134] = pd.Series({"Year": 2050,"CSIRO Adjusted Sea Level": lin1.slope*2050+lin1.intercept})
-    lin2=linregress(x=df2050["Year"],y=df2050["CSIRO Adjusted Sea Level"])
-    bfl2=lin2.slope*df2050["Year"]+lin2.intercept
+    bfl1=lin1.slope*df_p["Year"]+lin1.intercept
 
     # Create second line of best fit
-    df_sl=df.loc[df["Year"]>=2000.0]
-    lin3=linregress(x=df_sl["Year"],y=df_sl["CSIRO Adjusted Sea Level"])
-    bfl3=lin3.slope*df_sl["Year"]+lin3.intercept
-    lin3.slope*2050+lin3.intercept
-    df_sl2050=df_sl.copy()
-    df_sl2050.loc[134] = pd.Series({"Year": 2050,"CSIRO Adjusted Sea Level": lin3.slope*2050+lin3.intercept})
-    lin4=linregress(x=df_sl2050["Year"],y=df_sl2050["CSIRO Adjusted Sea Level"])
-    bfl4=lin4.slope*df_sl2050["Year"]+lin4.intercept
-    plt.scatter(df2050["Year"],df2050["CSIRO Adjusted Sea Level"])
-    plt.plot(df_sl2050["Year"],bfl4)
-    plt.plot(df2050["Year"],bfl2)
-
+    df2=df.copy()
+    df2=df2.loc[df2["Year"]>=2000]
+    df_p2=df_p.copy()
+    df_p2=df_p2.loc[df_p2["Year"]>=2000]
+    lin2=linregress(x=df2["Year"],y=df2["CSIRO Adjusted Sea Level"])
+    bfl2=lin2.slope*df_p2["Year"]+lin2.intercept
+    plt.scatter(df_p["Year"],df_p["CSIRO Adjusted Sea Level"])
+    plt.plot(df_p["Year"],bfl1)
+    plt.plot(df_p2["Year"],bfl2)
     # Add labels and title
     plt.xlabel("Year")
     plt.ylabel("Sea Level (inches)")
